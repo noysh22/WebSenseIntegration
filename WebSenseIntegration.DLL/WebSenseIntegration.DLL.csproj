@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Renci.SshNet, Version=2016.0.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
+      <HintPath>..\packages\SSH.NET.2016.0.0\lib\net40\Renci.SshNet.dll</HintPath>
+    </Reference>
     <Reference Include="Siemplify.Common">
       <HintPath>..\..\SiemplifyDll\Siemplify.Common.dll</HintPath>
     </Reference>
@@ -43,13 +46,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\BlocklistController.cs" />
+    <Compile Include="Data\BlocklistEntry.cs" />
+    <Compile Include="Data\BlocklistEntryConverter.cs" />
+    <Compile Include="Data\BlocklistEnums.cs" />
+    <Compile Include="Data\IBlocklistable.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="SSH\ContentGatewayShell.cs" />
+    <Compile Include="WebSenseExceptions.cs" />
     <Compile Include="WebSenseManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebSenseMetadataProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\WebSense.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

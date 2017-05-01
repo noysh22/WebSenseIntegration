@@ -63,24 +63,23 @@ namespace Siemplify.Integrations.WebSense
                         new ModuleSettingsProperty
                         {
                             ModuleName = Identifier,
-                            PropertyName = Settings.ApiUsername,
-                            PropertyDisplayName = Settings.ApiUsername,
-                            PropertyType = ParamTypeEnum.String,
+                            PropertyName = Settings.GatewayHost,
+                            PropertyDisplayName = Settings.GatewayHost,
+                            PropertyType = ParamTypeEnum.String
                         },
                         new ModuleSettingsProperty
                         {
                             ModuleName = Identifier,
-                            PropertyName = Settings.ApiKey,
-                            PropertyDisplayName = Settings.ApiKey,
-                            PropertyType = ParamTypeEnum.Password,
+                            PropertyName = Settings.GatewayUserName,
+                            PropertyDisplayName = Settings.GatewayUserName,
+                            PropertyType = ParamTypeEnum.String
                         },
                         new ModuleSettingsProperty
                         {
                             ModuleName = Identifier,
-                            PropertyName = Settings.ApiHost,
-                            PropertyDisplayName = Settings.ApiHost,
-                            PropertyType = ParamTypeEnum.URL,
-                            Value = WebSenseManager.DefaultApiHost
+                            PropertyName = Settings.GatewayKey,
+                            PropertyDisplayName = Settings.GatewayKey,
+                            PropertyType = ParamTypeEnum.Password
                         }
                     };
                 }
@@ -91,23 +90,23 @@ namespace Siemplify.Integrations.WebSense
 
         public override Task Test(Dictionary<string, string> paramsWithValues)
         {
-            var apiUsername = paramsWithValues.GetOrDefault(Settings.ApiUsername);
-            if (apiUsername.IsEmpty())
+            var gwHost = paramsWithValues.GetOrDefault(Settings.GatewayHost);
+            if (gwHost.IsEmpty())
             {
-                throw new Exception(string.Format("Not found <{0}> Field.", Settings.ApiUsername));
+                throw new Exception(string.Format("Not found <{0}> Field.", Settings.GatewayHost));
             }
-            var apiKey = paramsWithValues.GetOrDefault(Settings.ApiKey);
-            if (apiKey.IsEmpty())
+            var gwUsername = paramsWithValues.GetOrDefault(Settings.GatewayUserName);
+            if (gwUsername.IsEmpty())
             {
-                throw new Exception(string.Format("Not found <{0}> Field.", Settings.ApiKey));
+                throw new Exception(string.Format("Not found <{0}> Field.", Settings.GatewayUserName));
             }
-            var apiHost = paramsWithValues.GetOrDefault(Settings.ApiHost);
-            if (apiHost.IsEmpty())
+            var gwKey = paramsWithValues.GetOrDefault(Settings.GatewayKey);
+            if (gwKey.IsEmpty())
             {
-                throw new Exception(string.Format("Not found <{0}> Field.", Settings.ApiHost));
+                throw new Exception(string.Format("Not found <{0}> Field.", Settings.GatewayKey));
             }
 
-            var manager = new WebSenseManager(apiUsername, apiKey, apiHost);
+            var manager = new WebSenseManager(gwHost, gwUsername, gwKey);
             //await manager.GetDomainProfile("https://google.com").ConfigureAwait(false);
             throw new NotImplementedException();
         }

@@ -48,5 +48,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WebSenseIntegration.DLL\WebSenseIntegration.DLL.csproj">
+      <Project>{93b511d2-e324-4466-b7e0-8d3b3505ca44}</Project>
+      <Name>WebSenseIntegration.DLL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
