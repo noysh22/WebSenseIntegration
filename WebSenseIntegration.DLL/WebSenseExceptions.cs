@@ -18,8 +18,19 @@ namespace Siemplify.Integrations.WebSense
         public AddToBlocklistException(string message) : base(message) { }
     }
 
-    public class InvalidBlockListEntryException : WebSenseException
+    public class InvalidBlocklistEntryException : WebSenseException
     {
-        public InvalidBlockListEntryException(string message) : base(message) { }
+        public InvalidBlocklistEntryException(string message) : base(message) { }
     }
+
+    public class InvalidBlocklistEntryDestTypeException : WebSenseException
+    {
+        public InvalidBlocklistEntryDestTypeException(string message) : base(message) { }
+    }
+
+    public class InvalidBlocklistEntryOptionalFlagException : WebSenseException
+    {
+        public InvalidBlocklistEntryOptionalFlagException(string message) : base(message) { }
+    }
+    
 }

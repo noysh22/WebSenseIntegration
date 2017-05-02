@@ -13,13 +13,26 @@ namespace WebSenseIntegration.EXE
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("This is the main exe");
-            BlocklistEntry entry = new BlocklistEntry(
-                BlocklistRuleType.BLOCK,
-                BlocklistDestType.DOMAIN,
-                "ynet.co.il");
+            //Console.WriteLine("This is the main exe");
+            //BlocklistEntry entry = new BlocklistEntry(
+            //    BlocklistRuleType.BLOCK,
+            //    BlocklistDestType.DOMAIN,
+            //    "ynet.co.il");
 
-            Console.WriteLine(entry.BuildBlocklistEntry());
+            //var entry = new BlocklistEntry(BlocklistRuleType.BLOCK, BlocklistDestType.DOMAIN, "ynet.co.il");
+            //Console.WriteLine(entry.BuildBlocklistEntry());
+
+            WebSenseManager manager = new WebSenseManager("192.168.184.136", "root", "CHANGEHERE");
+            var result = manager.AddToBlocklist(BlocklistRuleType.BLOCK, BlocklistDestType.DOMAIN, "cnn.com");
+
+            if (result)
+            {
+                Console.WriteLine("Great Success");
+            }
+            else
+            {
+                Console.WriteLine("Failed miserably");
+            }
         }
     }
 }

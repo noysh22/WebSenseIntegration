@@ -23,7 +23,7 @@ namespace Siemplify.Integrations.WebSense.Data
             { BlocklistOptionalFlags.SOURCEIP, "src ip" }
         };
 
-        public static string BlockListEntryBaseFormat = "action={0} {1}={2}";
+        public static string BlockListEntryBaseFormat = "{0}=\\\"{1}\\\"{2} action={3}";
         public static string BlockListOptionalFlagFormat = " {0}={1}";
     }
 }

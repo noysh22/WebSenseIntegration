@@ -4,7 +4,7 @@ using Siemplify.Integrations.WebSense.SSH;
 
 namespace Siemplify.Integrations.WebSense.Data
 {
-    public class BlocklistController : IDisposable
+    public class BlocklistController
     {
         private static readonly string BlocklistFilePath = "/opt/WCG/config/filter.config";
         private static readonly string SshEchoCmdFormat = "echo \"{0}\" >> " + BlocklistFilePath;
@@ -28,7 +28,7 @@ namespace Siemplify.Integrations.WebSense.Data
         public bool AddToBlocklist(IBlocklistable blocklistEntry, bool shouldValidate = false)
         {
             // Validate first the entry is valid
-            //blocklistEntry.ValidateEntry();
+            blocklistEntry.ValidateEntry();
 
             var blocklistEntryStr = blocklistEntry.BuildBlocklistEntry();
             string addToBlacklistCmd = string.Format(SshEchoCmdFormat, blocklistEntryStr);
@@ -49,11 +49,6 @@ namespace Siemplify.Integrations.WebSense.Data
             }
 
             return retVal;
-        }
-
-        public void Dispose()
-        {
-            _shell.Dispose();
         }
     }
 }
