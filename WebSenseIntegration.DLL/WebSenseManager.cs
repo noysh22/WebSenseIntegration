@@ -11,22 +11,12 @@ namespace Siemplify.Integrations.WebSense
 {
     public class WebSenseManager : IDisposable
     {
-        public const string DefaultApiHost = @"https://10.0.0.2:15873/web/api/v1/";
-
-        private readonly string _apiUsername;
-        private readonly string _apiKey;
         private readonly string _gatewayHost;
         private readonly string _gatewayUser;
 
         private readonly ContentGatewayShell _shell;
         private readonly BlocklistController _blocklistController;
         private readonly WebSenseDbConfig _dbConfig;
-
-        //public WebSenseManager(string apiUsername, string apiKey, string apiHost = DefaultApiHost)
-        //{
-        //    _apiUsername = apiUsername;
-        //    _apiKey = apiKey;
-        //}
 
         public WebSenseManager(
             string gatewayHost,
