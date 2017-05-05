@@ -32,5 +32,10 @@ namespace Siemplify.Integrations.WebSense
     {
         public InvalidBlocklistEntryOptionalFlagException(string message) : base(message) { }
     }
-    
+
+    public class WebSenseDbConfigurationException : WebSenseException
+    {
+        public WebSenseDbConfigurationException(string message) : base(message) { }
+    }
+
 }

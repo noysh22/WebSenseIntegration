@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="WebSenseDb.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'wslogdb70.dbo.summary_url' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="summary_url">
+          <Key>
+            <PropertyRef Name="record_number" />
+          </Key>
+          <Property Name="record_number" Type="bigint" Nullable="false" />
+          <Property Name="date_time" Type="datetime" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="category" Type="int" />
+          <Property Name="disposition_code" Type="smallint" />
+          <Property Name="protocol_id" Type="int" />
+          <Property Name="url_id" Type="int" />
+          <Property Name="url" Type="nvarchar" MaxLength="255" />
+          <Property Name="source_server_ip_int" Type="bigint" />
+          <Property Name="source_ip_int" Type="bigint" />
+          <Property Name="destination_ip_int" Type="bigint" />
+          <Property Name="port" Type="int" />
+          <Property Name="bytes_received" Type="bigint" />
+          <Property Name="bytes_sent" Type="bigint" />
+          <Property Name="hits" Type="int" />
+          <Property Name="browse_time" Type="int" />
+          <Property Name="source_ip_bin" Type="varbinary" MaxLength="16" />
+          <Property Name="destination_ip_bin" Type="varbinary" MaxLength="16" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'wslogdb70.dbo.user_names' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="user_names">
+          <Key>
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="domain" />
+            <PropertyRef Name="domain_id" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="user_name" Type="nvarchar" MaxLength="683" />
+          <Property Name="user_login_name" Type="nvarchar" MaxLength="255" />
+          <Property Name="user_full_name" Type="nvarchar" MaxLength="255" />
+          <Property Name="namespace" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_display_name" Type="nvarchar" MaxLength="512" />
+          <Property Name="catalog_server" Type="nvarchar" MaxLength="50" />
+          <Property Name="last_update" Type="datetime" />
+          <Property Name="domain" Type="nvarchar" MaxLength="425" Nullable="false" />
+          <Property Name="domain_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="WebSenseDbStoreContainer">
+          <EntitySet Name="summary_url" EntityType="Self.summary_url" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [summary_url].[record_number] AS [record_number], 
+    [summary_url].[date_time] AS [date_time], 
+    [summary_url].[user_id] AS [user_id], 
+    [summary_url].[category] AS [category], 
+    [summary_url].[disposition_code] AS [disposition_code], 
+    [summary_url].[protocol_id] AS [protocol_id], 
+    [summary_url].[url_id] AS [url_id], 
+    [summary_url].[url] AS [url], 
+    [summary_url].[source_server_ip_int] AS [source_server_ip_int], 
+    [summary_url].[source_ip_int] AS [source_ip_int], 
+    [summary_url].[destination_ip_int] AS [destination_ip_int], 
+    [summary_url].[port] AS [port], 
+    [summary_url].[bytes_received] AS [bytes_received], 
+    [summary_url].[bytes_sent] AS [bytes_sent], 
+    [summary_url].[hits] AS [hits], 
+    [summary_url].[browse_time] AS [browse_time], 
+    [summary_url].[source_ip_bin] AS [source_ip_bin], 
+    [summary_url].[destination_ip_bin] AS [destination_ip_bin]
+    FROM [dbo].[summary_url] AS [summary_url]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="user_names" EntityType="Self.user_names" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [user_names].[user_id] AS [user_id], 
+    [user_names].[user_name] AS [user_name], 
+    [user_names].[user_login_name] AS [user_login_name], 
+    [user_names].[user_full_name] AS [user_full_name], 
+    [user_names].[namespace] AS [namespace], 
+    [user_names].[user_display_name] AS [user_display_name], 
+    [user_names].[catalog_server] AS [catalog_server], 
+    [user_names].[last_update] AS [last_update], 
+    [user_names].[domain] AS [domain], 
+    [user_names].[domain_id] AS [domain_id]
+    FROM [dbo].[user_names] AS [user_names]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WebSenseDb" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="summary_url">
+          <Key>
+            <PropertyRef Name="record_number" />
+          </Key>
+          <Property Name="record_number" Type="Int64" Nullable="false" />
+          <Property Name="date_time" Type="DateTime" Precision="3" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="category" Type="Int32" />
+          <Property Name="disposition_code" Type="Int16" />
+          <Property Name="protocol_id" Type="Int32" />
+          <Property Name="url_id" Type="Int32" />
+          <Property Name="url" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="source_server_ip_int" Type="Int64" />
+          <Property Name="source_ip_int" Type="Int64" />
+          <Property Name="destination_ip_int" Type="Int64" />
+          <Property Name="port" Type="Int32" />
+          <Property Name="bytes_received" Type="Int64" />
+          <Property Name="bytes_sent" Type="Int64" />
+          <Property Name="hits" Type="Int32" />
+          <Property Name="browse_time" Type="Int32" />
+          <Property Name="source_ip_bin" Type="Binary" MaxLength="16" FixedLength="false" />
+          <Property Name="destination_ip_bin" Type="Binary" MaxLength="16" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="user_names">
+          <Key>
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="domain" />
+            <PropertyRef Name="domain_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="user_name" Type="String" MaxLength="683" FixedLength="false" Unicode="true" />
+          <Property Name="user_login_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="user_full_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="namespace" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="user_display_name" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="catalog_server" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="last_update" Type="DateTime" Precision="3" />
+          <Property Name="domain" Type="String" MaxLength="425" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="domain_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="WebSenseContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="summary_url" EntityType="Self.summary_url" />
+          <EntitySet Name="user_names" EntityType="Self.user_names" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WebSenseDbStoreContainer" CdmEntityContainer="WebSenseContext">
+          <EntitySetMapping Name="summary_url">
+            <EntityTypeMapping TypeName="WebSenseDb.summary_url">
+              <MappingFragment StoreEntitySet="summary_url">
+                <ScalarProperty Name="record_number" ColumnName="record_number" />
+                <ScalarProperty Name="date_time" ColumnName="date_time" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="disposition_code" ColumnName="disposition_code" />
+                <ScalarProperty Name="protocol_id" ColumnName="protocol_id" />
+                <ScalarProperty Name="url_id" ColumnName="url_id" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="source_server_ip_int" ColumnName="source_server_ip_int" />
+                <ScalarProperty Name="source_ip_int" ColumnName="source_ip_int" />
+                <ScalarProperty Name="destination_ip_int" ColumnName="destination_ip_int" />
+                <ScalarProperty Name="port" ColumnName="port" />
+                <ScalarProperty Name="bytes_received" ColumnName="bytes_received" />
+                <ScalarProperty Name="bytes_sent" ColumnName="bytes_sent" />
+                <ScalarProperty Name="hits" ColumnName="hits" />
+                <ScalarProperty Name="browse_time" ColumnName="browse_time" />
+                <ScalarProperty Name="source_ip_bin" ColumnName="source_ip_bin" />
+                <ScalarProperty Name="destination_ip_bin" ColumnName="destination_ip_bin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_names">
+            <EntityTypeMapping TypeName="WebSenseDb.user_names">
+              <MappingFragment StoreEntitySet="user_names">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="user_login_name" ColumnName="user_login_name" />
+                <ScalarProperty Name="user_full_name" ColumnName="user_full_name" />
+                <ScalarProperty Name="namespace" ColumnName="namespace" />
+                <ScalarProperty Name="user_display_name" ColumnName="user_display_name" />
+                <ScalarProperty Name="catalog_server" ColumnName="catalog_server" />
+                <ScalarProperty Name="last_update" ColumnName="last_update" />
+                <ScalarProperty Name="domain" ColumnName="domain" />
+                <ScalarProperty Name="domain_id" ColumnName="domain_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -106,7 +106,7 @@ namespace Siemplify.Integrations.WebSense
                 throw new Exception(string.Format("Not found <{0}> Field.", Settings.GatewayKey));
             }
 
-            var manager = new WebSenseManager(gwHost, gwUsername, gwKey);
+            //var manager = new WebSenseManager(gwHost, gwUsername, gwKey);
             //await manager.GetDomainProfile("https://google.com").ConfigureAwait(false);
             throw new NotImplementedException();
         }

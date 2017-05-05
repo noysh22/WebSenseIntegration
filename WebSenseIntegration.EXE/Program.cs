@@ -22,17 +22,42 @@ namespace WebSenseIntegration.EXE
             //var entry = new BlocklistEntry(BlocklistRuleType.BLOCK, BlocklistDestType.DOMAIN, "ynet.co.il");
             //Console.WriteLine(entry.BuildBlocklistEntry());
 
-            WebSenseManager manager = new WebSenseManager("192.168.184.136", "root", "CHANGEHERE");
-            var result = manager.AddToBlocklist(BlocklistRuleType.BLOCK, BlocklistDestType.DOMAIN, "cnn.com");
+            WebSenseManager manager = new WebSenseManager(
+                "192.168.184.136",
+                "root",
+                "CHANGEHERE",
+                "Yeswecan2015!");
+            //var result = manager.AddToBlocklist(BlocklistRuleType.BLOCK, BlocklistDestType.DOMAIN, "cnn.com");
 
-            if (result)
+            //if (result)
+            //{
+            //    Console.WriteLine("Great Success");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Failed miserably");
+            //}
+
+            var urls = manager.GetAllUrlsForUser("192.168.184.137");
+            if (null != urls)
             {
-                Console.WriteLine("Great Success");
+                urls.ForEach(Console.WriteLine);
             }
             else
             {
-                Console.WriteLine("Failed miserably");
+                Console.WriteLine("No urls found for this user");
             }
+
+            var usersForUrl = manager.GetAllUsersForUrl("google.com");
+            if (null != usersForUrl)
+            {
+                usersForUrl.ForEach(Console.WriteLine);
+            }
+            else
+            {
+                Console.WriteLine("No users found for this url");
+            }
+            
         }
     }
 }
