@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,11 @@ namespace Siemplify.Integrations.WebSense.SqlDb
         private user_names GetUserId(string username)
         {
             return user_names.SingleOrDefault(user => user.user_name == username);
+        }
+
+        private Task<user_names> GetUserIdAsync(string username)
+        {
+            return user_names.SingleOrDefaultAsync(user => user.user_name == username);
         }
 
         /// <summary>
@@ -45,6 +51,19 @@ namespace Siemplify.Integrations.WebSense.SqlDb
             return urls.Select(url => url.url).Distinct().ToList();
         }
 
+        public async Task<List<string>> GetAllUrlsForUserAsync(string username)
+        {
+            var user = await GetUserIdAsync(username);
+
+            if (null == user)
+            {
+                return null;
+            }
+
+            var urls = await summary_url.Where(url => url.user_id == user.user_id).ToListAsync();
+            return urls.Select(url => url.url).Distinct().ToList();
+        }
+
         /// <summary>
         /// Query the DB for all the user which match a given url
         /// </summary>
@@ -66,6 +85,18 @@ namespace Siemplify.Integrations.WebSense.SqlDb
                 .ToList();
 
             return 0 == urlsByUser.Count ? null : 
+                urlsByUser.Select(group => group.First().userObj.user_name).ToList();
+        }
+
+        public async Task<List<string>> GetAllUsersForUrlAsync(string urlStr)
+        {
+            var urlsByUser = await summary_url
+                .Join(user_names, url => url.user_id, user => user.user_id, (urlObj, userObj) => new { urlObj, userObj })
+                .Where(row => row.urlObj.url.Equals(urlStr))
+                .GroupBy(row => row.urlObj.user_id)
+                .ToListAsync();
+
+            return 0 == urlsByUser.Count ? null :
                 urlsByUser.Select(group => group.First().userObj.user_name).ToList();
         }
 

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Siemplify.Integrations.WebSense.Data;
 using Siemplify.Integrations.WebSense.SqlDb;
 using Siemplify.Integrations.WebSense.SSH;
@@ -75,6 +76,19 @@ namespace Siemplify.Integrations.WebSense
                 true);
         }
 
+        public Task<bool> AddToBlocklistAsync(
+            BlocklistRuleType ruleType,
+            BlocklistDestType destType,
+            string dest,
+            BlocklistOptionalFlags optionalFlags = BlocklistOptionalFlags.NONE,
+            string sourceIp = null,
+            ushort port = 0)
+        {
+            return Task.Factory.StartNew(() => 
+                AddToBlocklist(new BlocklistEntry(ruleType, destType, dest, optionalFlags, sourceIp, port),true)
+            );
+        }
+
         /// <summary>
         /// Add a url to the blocklist of websense content gateway
         /// </summary>
@@ -117,6 +131,14 @@ namespace Siemplify.Integrations.WebSense
             using (var context = new WebSenseContext(_dbConfig))
             {
                 return context.GetAllUsersForUrl(urlStr);
+            }
+        }
+
+        public Task<List<string>> GetAllUsersForUrlAsync(string urlStr)
+        {
+            using (var context = new WebSenseContext(_dbConfig))
+            {
+                return context.GetAllUsersForUrlAsync(urlStr);
             }
         }
 

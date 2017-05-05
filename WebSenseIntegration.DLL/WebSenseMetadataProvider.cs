@@ -80,6 +80,27 @@ namespace Siemplify.Integrations.WebSense
                             PropertyName = Settings.GatewayKey,
                             PropertyDisplayName = Settings.GatewayKey,
                             PropertyType = ParamTypeEnum.Password
+                        },
+                        new ModuleSettingsProperty
+                        {
+                            ModuleName = Identifier,
+                            PropertyName = Settings.DbHost,
+                            PropertyDisplayName = Settings.DbHost,
+                            PropertyType = ParamTypeEnum.String
+                        },
+                        new ModuleSettingsProperty
+                        {
+                            ModuleName = Identifier,
+                            PropertyName = Settings.DbUsername,
+                            PropertyDisplayName = Settings.DbUsername,
+                            PropertyType = ParamTypeEnum.String
+                        },
+                        new ModuleSettingsProperty
+                        {
+                            ModuleName = Identifier,
+                            PropertyName = Settings.DbPass,
+                            PropertyDisplayName = Settings.DbPass,
+                            PropertyType = ParamTypeEnum.Password
                         }
                     };
                 }
@@ -88,7 +109,7 @@ namespace Siemplify.Integrations.WebSense
             }
         }
 
-        public override Task Test(Dictionary<string, string> paramsWithValues)
+        public override async Task Test(Dictionary<string, string> paramsWithValues)
         {
             var gwHost = paramsWithValues.GetOrDefault(Settings.GatewayHost);
             if (gwHost.IsEmpty())
@@ -106,9 +127,26 @@ namespace Siemplify.Integrations.WebSense
                 throw new Exception(string.Format("Not found <{0}> Field.", Settings.GatewayKey));
             }
 
-            //var manager = new WebSenseManager(gwHost, gwUsername, gwKey);
-            //await manager.GetDomainProfile("https://google.com").ConfigureAwait(false);
-            throw new NotImplementedException();
+            var dbHost = paramsWithValues.GetOrDefault(Settings.DbHost);
+            if (dbHost.IsEmpty())
+            {
+                throw new Exception(string.Format("Not found <{0}> Field.", Settings.DbHost));
+            }
+
+            var dbUser = paramsWithValues.GetOrDefault(Settings.DbUsername);
+            if (dbHost.IsEmpty())
+            {
+                throw new Exception(string.Format("Not found <{0}> Field.", Settings.DbUsername));
+            }
+
+            var dbPass = paramsWithValues.GetOrDefault(Settings.DbPass);
+            if (dbHost.IsEmpty())
+            {
+                throw new Exception(string.Format("Not found <{0}> Field.", Settings.DbPass));
+            }
+
+            var manager = new WebSenseManager(gwHost, gwUsername, gwKey, dbPass, dbHost, dbUser);
+            await manager.GetAllUsersForUrlAsync("blabla.com");
         }
     }
 }

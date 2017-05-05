@@ -8,9 +8,9 @@ namespace Siemplify.Integrations.WebSense
 {
     public class Settings
     {
-        public static readonly string ApiUsername = "API Username";
-        public static readonly string ApiKey = "API Key";
-        public static readonly string ApiHost = "API Host";
+        public static readonly string DbHost = "Database Host";
+        public static readonly string DbUsername = "Database username";
+        public static readonly string DbPass = "Database password";
 
         public static readonly string GatewayHost = "Gateway Host";        
         public static readonly string GatewayUserName = "Gateway User";
@@ -18,6 +18,5 @@ namespace Siemplify.Integrations.WebSense
 
         public static readonly string GatewayHostname = "contentgw";
         public static readonly string GatewayUser = "root";
-        public static readonly string GateWayPass = "CHANGEHERE";
     }
 }
