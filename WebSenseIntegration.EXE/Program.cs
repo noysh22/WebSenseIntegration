@@ -26,7 +26,7 @@ namespace WebSenseIntegration.EXE
                 "192.168.184.136",
                 "root",
                 "CHANGEHERE",
-                "Yeswecan2015!");
+                "CHANGEHERE");
             //var result = manager.AddToBlocklist(BlocklistRuleType.BLOCK, BlocklistDestType.DOMAIN, "cnn.com");
 
             //if (result)
