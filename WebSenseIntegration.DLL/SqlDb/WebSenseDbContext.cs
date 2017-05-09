@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,11 +22,13 @@ namespace Siemplify.Integrations.WebSense.SqlDb
 
         private user_names GetUserId(string username)
         {
+            Debug.WriteLine(string.Format("Retrieving user id for username {0}", username));
             return user_names.SingleOrDefault(user => user.user_name == username);
         }
 
         private Task<user_names> GetUserIdAsync(string username)
         {
+            Debug.WriteLine(string.Format("Retrieving user id for username {0}", username));
             return user_names.SingleOrDefaultAsync(user => user.user_name == username);
         }
 
@@ -39,6 +42,8 @@ namespace Siemplify.Integrations.WebSense.SqlDb
         /// </returns>
         public List<string> GetAllUrlsForUser(string username)
         {
+            Debug.WriteLine(string.Format("Retrieving all urls for username {0}", username));
+
             var user = GetUserId(username);
 
             if (null == user)
@@ -53,6 +58,8 @@ namespace Siemplify.Integrations.WebSense.SqlDb
 
         public async Task<List<string>> GetAllUrlsForUserAsync(string username)
         {
+            Debug.WriteLine(string.Format("Retrieving all urls for username {0}", username));
+
             var user = await GetUserIdAsync(username);
 
             if (null == user)
@@ -78,6 +85,8 @@ namespace Siemplify.Integrations.WebSense.SqlDb
         /// </remarks>
         public List<string> GetAllUsersForUrl(string urlStr)
         {
+            Debug.WriteLine(string.Format("Retrieving all users for url {0}", urlStr));
+
             var urlsByUser = summary_url
                 .Join(user_names, url => url.user_id, user => user.user_id, (urlObj, userObj) => new { urlObj, userObj })
                 .Where(row => row.urlObj.url.Equals(urlStr))
@@ -90,6 +99,8 @@ namespace Siemplify.Integrations.WebSense.SqlDb
 
         public async Task<List<string>> GetAllUsersForUrlAsync(string urlStr)
         {
+            Debug.WriteLine(string.Format("Retrieving all users for url {0}", urlStr));
+
             var urlsByUser = await summary_url
                 .Join(user_names, url => url.user_id, user => user.user_id, (urlObj, userObj) => new { urlObj, userObj })
                 .Where(row => row.urlObj.url.Equals(urlStr))

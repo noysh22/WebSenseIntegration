@@ -27,37 +27,37 @@ namespace WebSenseIntegration.EXE
                 "root",
                 "CHANGEHERE",
                 "CHANGEHERE");
-            //var result = manager.AddToBlocklist(BlocklistRuleType.BLOCK, BlocklistDestType.DOMAIN, "cnn.com");
+            var result = manager.AddToBlocklist(BlocklistRuleType.BLOCK, BlocklistDestType.DOMAIN, "cnn.com");
 
-            //if (result)
+            if (result)
+            {
+                Console.WriteLine("Great Success");
+            }
+            else
+            {
+                Console.WriteLine("Failed miserably");
+            }
+
+            //var urls = manager.GetAllUrlsForUser("192.168.184.137");
+            //if (null != urls)
             //{
-            //    Console.WriteLine("Great Success");
+            //    urls.ForEach(Console.WriteLine);
             //}
             //else
             //{
-            //    Console.WriteLine("Failed miserably");
+            //    Console.WriteLine("No urls found for this user");
             //}
 
-            var urls = manager.GetAllUrlsForUser("192.168.184.137");
-            if (null != urls)
-            {
-                urls.ForEach(Console.WriteLine);
-            }
-            else
-            {
-                Console.WriteLine("No urls found for this user");
-            }
+            //var usersForUrl = manager.GetAllUsersForUrl("google.com");
+            //if (null != usersForUrl)
+            //{
+            //    usersForUrl.ForEach(Console.WriteLine);
+            //}
+            //else
+            //{
+            //    Console.WriteLine("No users found for this url");
+            //}
 
-            var usersForUrl = manager.GetAllUsersForUrl("google.com");
-            if (null != usersForUrl)
-            {
-                usersForUrl.ForEach(Console.WriteLine);
-            }
-            else
-            {
-                Console.WriteLine("No users found for this url");
-            }
-            
         }
     }
 }

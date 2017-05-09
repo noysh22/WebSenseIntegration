@@ -38,4 +38,9 @@ namespace Siemplify.Integrations.WebSense
         public WebSenseDbConfigurationException(string message) : base(message) { }
     }
 
+    public class WebSenseRestartContentGatewayException : WebSenseException
+    {
+        public WebSenseRestartContentGatewayException(string message) : base(message) { }
+    }
+
 }
